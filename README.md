@@ -1,6 +1,6 @@
 # Research
 
-## Aulao Virtual = 1a versão frontend MVC da ferramenta em cloud computing: eSTudo
+## Aula Virtual = 1a versão frontend MVC da ferramenta para ensino a distancia em cloud computing: eSTudo
 
 ### Conceito geral:
 
