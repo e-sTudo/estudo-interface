@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import MediaCard from "../components/MediaCard";
+import {useParams} from "react-router-dom";
 
 const api = 'http://localhost:5000/';
 
@@ -15,13 +16,15 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function MediaCollection() {
+export default function MediaCollection(props) {
     const classes = useStyles();
     const [collection, setCollection] = useState({});
+    let { id } = useParams();
 
     useEffect(()=>{
         const mediaList = {}
-        fetch(api+'get_class/firstclass')
+        const classname =  (props.classid !== undefined) ? props.classid : id;
+        fetch(api+'get_class/'+classname)
             .then(response => response.json())
             .then(data => {
                 for (const ind in data) {

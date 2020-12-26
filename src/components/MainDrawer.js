@@ -1,18 +1,20 @@
+import React from "react";
+import {makeStyles, useTheme} from "@material-ui/core/styles";
+import {Link} from "react-router-dom";
+
 import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import Drawer from "@material-ui/core/Drawer";
+
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
-import ListItemText from "@material-ui/core/ListItemText";
-import Drawer from "@material-ui/core/Drawer";
-import React from "react";
-import {makeStyles, useTheme} from "@material-ui/core/styles";
-import {Link} from "react-router-dom";
-import Login from "../pages/Login";
+
 
 const drawerWidth = 300;
 
@@ -75,7 +77,7 @@ export default function MainDrawer(props) {
             </ListItem>
             <ListItem button key='ListClasses' component={Link} to="/">
                 <ListItemIcon><InboxIcon /></ListItemIcon>
-                <ListItemText primary='Lectures' />
+                <ListItemText primary='Select Lecture' />
             </ListItem>
             <ListItem button key='Presentation' component={Link} to="/present">
                 <ListItemIcon><InboxIcon /></ListItemIcon>

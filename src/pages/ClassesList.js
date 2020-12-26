@@ -8,7 +8,13 @@ import Avatar from '@material-ui/core/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
 import WorkIcon from '@material-ui/icons/Work';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
-
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useParams
+} from "react-router-dom";
 
 const api = 'http://localhost:5000/';
 
@@ -20,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ClassesList(props) {
     const classes = useStyles();
-    const [classesList, setClassesList] = React.useState([]);
+    const [classesList, setClassesList] = React.useState({});
 
     useEffect(()=>{
         fetch(api+"get_classes")
@@ -29,40 +35,29 @@ export default function ClassesList(props) {
                 return response.json();
             })
             .then(list => {
-                const classeslist = [];
+                const classeslist = {};
                 for (const ind in list) {
-                    const file = list[ind].split('.');
-                    if (!(file[0] in classeslist)) {
-                        classeslist.push(file[0]);
-                    }
+                    const name = list[ind].split('.')[0];
+                    classeslist[name] = change_name(name);
                 }
                 setClassesList(classeslist);
             });
     }, []);
 
-    const set_lecture = (list) => {
+    const change_name = (name) => {
         const regexCamel = /(\w[A-Z])/g;
-        const lectures = []
-        for (const lect in list) {
-            let array1;
-            while ((array1 = regexCamel.exec(lect)) !== null) {
-                console.log(`Found ${array1[0]}. Next starts at ${regexCamel.lastIndex}.`);
-                // expected output: "Found foo. Next starts at 9."
-                // expected output: "Found foo. Next starts at 19."
-            }
-            lectures.append({
-                title: lect,
-                avatar: lect[0],
-                subheader: '05/12/2020',
-            });
+        let array1;
+        while ((array1 = regexCamel.exec(name)) !== null) {
+            console.log(`Found ${array1[0]}. Next starts at ${regexCamel.lastIndex}.`);
+            // expected output: "Found foo. Next starts at 9."
+            // expected output: "Found foo. Next starts at 19."
         }
-        setClassesList(lectures);
     }
 
     return (
         <List className={classes.root}>
-            {classesList.map(lecture => (
-                <ListItem>
+            {Object.keys(classesList).map(lecture => (
+                <ListItem component={Link} to={'class/'+lecture}>
                     <ListItemAvatar>
                         <Avatar>
                             <ImageIcon />

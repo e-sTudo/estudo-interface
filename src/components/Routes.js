@@ -1,5 +1,11 @@
 import React from "react";
-import {Route, Switch} from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useParams
+} from "react-router-dom";
 
 import Login from "../pages/Login"
 import ClassesList from "../pages/ClassesList";
@@ -15,13 +21,13 @@ const classname = 'firstclass';
 export default function Routes() {
     return (
         <Switch>
-            <Route path="/present">
+            <Route path="/class/:id">
                 <Presentation />
             </Route>
-            <Route path="/media">
+            <Route path="/media/:id">
                 <MediaCollection />
             </Route>
-            <Route path="/edit">
+            <Route path="/edit/:id">
                 <ScriptEditor contentPath={api+'/static/'+classname+'.md'} editmode={true}/>
             </Route>
             <Route path="/login">

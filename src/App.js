@@ -8,11 +8,12 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {
-    BrowserRouter as Router,
+    BrowserRouter as Router, useParams,
 } from "react-router-dom";
 import MainDrawer from "./components/MainDrawer";
 import Routes from "./components/Routes";
 import {CamCanvas} from "./components/WebCam";
+
 
 const drawerWidth = 300;
 
